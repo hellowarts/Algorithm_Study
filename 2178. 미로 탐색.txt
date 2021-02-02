@@ -1,0 +1,54 @@
+#include <iostream>
+#include <queue>
+#include <string>
+#define MAX_SIZE 101
+
+using namespace std;
+
+void BFS(int y, int x);
+
+int N, M;
+
+string map[MAX_SIZE];
+bool v[MAX_SIZE][MAX_SIZE] = {false, };
+int cnt[MAX_SIZE][MAX_SIZE] = {0, };
+
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+
+
+int main(void) {
+	cin >> N >> M;
+	for (int i = 0; i < N; i++) {
+		cin >> map[i];
+	}
+
+	BFS(0, 0);
+
+	cout << cnt[N - 1][M - 1] + 1;
+}
+
+void BFS(int y, int x) {
+	queue<pair<int, int>> q;
+	q.push({ y, x });
+	v[y][x] = true;
+
+	while (!q.empty()) {
+		y = q.front().first;
+		x = q.front().second;
+		q.pop();
+
+		int ny, nx;
+		for (int i = 0; i < 4; i++) {
+			ny = y + dy[i];
+			nx = x + dx[i];
+			if (0 <= nx && nx < M && 0 <= ny && ny < N) {
+				if (map[ny][nx] == '1' && !v[ny][nx]) {
+					cnt[ny][nx] = cnt[y][x] + 1;
+					q.push({ ny,nx });
+					v[ny][nx] = true;
+				}
+			}
+		}
+	}
+}
