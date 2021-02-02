@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <queue>
+#define MAX_SIZE 26
+
+using namespace std;
+
+void BFS(int x, int y);
+
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+
+vector<int> Ap;
+int N, cnt;
+string map[MAX_SIZE];
+bool v[MAX_SIZE][MAX_SIZE];
+
+int main(void) {
+	cin >> N;
+
+	for (int i = 0; i < N; i++) {
+		cin >> map[i];
+	}
+
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			if (map[i][j] == '1' && !v[i][j]) {
+				cnt = 0;
+				BFS(i, j);
+				Ap.push_back(cnt);
+			}
+		}
+	}
+	sort(Ap.begin(), Ap.end());
+
+	cout << Ap.size() << endl;
+	for (int i = 0; i < Ap.size(); i++) {
+		cout << Ap[i] << endl;
+	}
+
+	return 0;
+}
+
+void BFS(int x, int y) {
+	cnt++;
+	queue<pair<int, int>> q;
+	q.push({ x,y });
+	v[x][y] = true;
+
+	while (!q.empty()) {
+		x = q.front().first;
+		y = q.front().second;
+		q.pop();
+
+		int nx, ny;
+		for (int i = 0; i < 4; i++) {
+			nx = x + dx[i];
+			ny = y + dy[i];
+			
+			if (0 <= nx && nx < N && 0 <= ny && ny < N) {
+				if (map[nx][ny] == '1' && !v[nx][ny]) {
+					cnt++;
+					q.push({ nx,ny });
+					v[nx][ny] = true;
+				}
+			}
+		}
+	}
+}
