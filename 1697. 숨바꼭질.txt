@@ -1,0 +1,44 @@
+#include <iostream>
+#include <queue>
+#define MAX_SIZE 100001
+
+using namespace std;
+
+int BFS();
+
+int N, K;
+
+int cnt[MAX_SIZE] = {0, };
+
+int main(void) {
+	cin >> N >> K;
+
+	cout << BFS();
+}
+
+int BFS() {
+	queue<int> q;
+	q.push(N);
+	cnt[N] = 1;
+
+	while (1)
+	{
+		int n = q.front();
+		q.pop();
+		if (n == K) {
+			return cnt[n] - 1;
+		}
+		if (n - 1 >= 0 && cnt[n - 1] == 0) {
+			cnt[n - 1] = cnt[n] + 1;
+			q.push(n - 1);
+		}
+		if (n + 1 <= MAX_SIZE-1 && cnt[n+1] == 0) {
+			cnt[n + 1] = cnt[n] + 1;
+			q.push(n + 1);
+		}
+		if (n * 2 <= MAX_SIZE-1 && cnt[n*2] == 0) {
+			cnt[n*2] = cnt[n] + 1;
+			q.push(n*2);
+		}
+	}
+}
