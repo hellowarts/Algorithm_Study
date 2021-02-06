@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <queue>
+#include <tuple>
+#define MAX_SIZE 1001
+
+using namespace std;
+
+int BFS();
+
+int N, M;
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+
+string map[MAX_SIZE];
+int cnt[MAX_SIZE][MAX_SIZE][2] = {0, };
+
+int main(void) {
+	cin >> N >> M;
+	for (int i = 0; i < N; i++) {
+		cin >> map[i];
+	}
+
+	cout << BFS();
+}
+
+int BFS() {
+	queue<tuple<int, int, int>> q;
+	q.push({ 0,0,1 });
+	cnt[0][0][1] = 1;
+
+	int x, y, nx, ny, broken;
+	while (!q.empty()) {
+		y = get<0>(q.front());
+		x = get<1>(q.front());
+		broken = get<2>(q.front());
+		q.pop();
+
+		if (x == M-1 && y == N-1) return cnt[y][x][broken];
+
+		for (int i = 0; i < 4; i++) {
+			ny = y + dy[i];
+			nx = x + dx[i];
+
+			if (0 <= nx && nx < M && 0 <= ny && ny < N) {
+				if (map[ny][nx] == '0' && cnt[ny][nx][broken] == 0) {
+					cnt[ny][nx][broken] = cnt[y][x][broken] + 1;
+					q.push({ ny,nx,broken });
+				}
+				else if (map[ny][nx] == '1' && broken == 1) {
+					cnt[ny][nx][broken-1] = cnt[y][x][broken] + 1;
+					q.push({ ny,nx,0 });
+				}
+			}
+		}
+	}
+	return -1;
+}
