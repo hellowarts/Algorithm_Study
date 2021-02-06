@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int A, B, V;
+    int result;
+
+    cin >> A >> B >> V;
+    result = (V - B - 1) / (A - B) + 1;
+
+    cout << result << endl;
+}
