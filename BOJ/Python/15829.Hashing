@@ -1,0 +1,8 @@
+SUM = 0
+r = 31
+M = 1234567891
+n = int(input())
+a = input()
+for i in range(n):
+    SUM += ((ord(a[i]) - 96) * r ** i) % M
+print(SUM%M)
