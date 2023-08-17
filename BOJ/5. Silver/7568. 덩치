@@ -1,0 +1,18 @@
+weight = []
+height = []
+k = []
+N = int(input())
+for i in range(N):
+    a, b = map(int, input().split())
+    weight.append(a)
+    height.append(b)
+    k.append(0)
+for i in range(N):
+    for j in range(0+i, N):
+        if i != j:
+            if weight[i] > weight[j] and height[i] > height[j]:
+                k[j] += 1
+            elif weight[i] < weight[j] and height[i] < height[j]:
+                k[i] += 1
+for i in k:
+    print(i+1, end=" ")
