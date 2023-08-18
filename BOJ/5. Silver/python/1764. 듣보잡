@@ -1,0 +1,13 @@
+import sys
+listen = set()
+see = set()
+N , M = map(int, sys.stdin.readline().strip().split())
+for _ in range(N):
+    s = sys.stdin.readline().strip()
+    listen.add(s)
+for _ in range(M):
+    s = sys.stdin.readline().strip()
+    see.add(s)
+print(len(listen & see))
+for s in sorted(listen & see):
+    print(s)
