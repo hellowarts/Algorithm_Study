@@ -1,0 +1,17 @@
+import sys
+solve = {1:0}
+def solution(n):
+    if n in solve.keys():
+        return solve[n]
+    if(n%2==0) and (n%3==0):
+        solve[n] = min(solution(n // 2)+1, solution(n // 3)+1)
+    elif n % 2 == 0:
+        solve[n] = min(solution(n // 2)+1, solution(n - 1)+1)
+    elif n % 3 == 0:
+        solve[n] = min(solution(n // 3)+1, solution(n - 1)+1)
+    else:
+        solve[n] = solution(n - 1)+1
+    return solve[n]
+
+n = int(sys.stdin.readline().strip())
+print(solution(n))
