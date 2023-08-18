@@ -1,0 +1,29 @@
+Block = []
+Min = 10000000000
+Block_Level = 0
+
+N, M, B = map(int, input().split())
+for _ in range(N):
+    a = list(map(int, input().split()))
+    Block.append(a)
+
+for h in range(257):
+    Take = 0
+    Use = 0
+    for i in range(N):
+        for j in range(M):
+            if Block[i][j] > h:
+                Take += Block[i][j] - h
+            else:
+                Use += h - Block[i][j]
+    if Use > Take + B:
+        continue
+
+    time = Take * 2 + Use
+    
+    if time < Min:
+        Min = time
+        Block_Level = h
+    elif time == Min and Block_Level < h:
+        Block_Level = h
+print(Min, Block_Level, end="")
