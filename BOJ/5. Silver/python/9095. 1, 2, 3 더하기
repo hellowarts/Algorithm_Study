@@ -1,0 +1,12 @@
+import sys
+dp = {1:1, 2:2, 3:4}
+def solution(n):
+    if n in dp.keys():
+        return dp[n]
+    dp[n] = solution(n-3) + solution(n-2) + solution(n-1)
+    return dp[n]
+    
+T = int(sys.stdin.readline().strip())
+for _ in range(T):
+    n = int(sys.stdin.readline().strip())
+    print(solution(n))
