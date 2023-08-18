@@ -1,0 +1,15 @@
+import sys
+book = {}
+N , M = map(int, sys.stdin.readline().strip().split())
+for i in range(1, N+1):
+    monster = sys.stdin.readline().strip()
+    book[monster] = str(i)
+    
+book2 = {v:k for k,v in book.items()}
+
+for _ in range(M):
+    p = sys.stdin.readline().strip()
+    if p in book:
+        print(book[p])
+    else:
+        print(book2[p])
