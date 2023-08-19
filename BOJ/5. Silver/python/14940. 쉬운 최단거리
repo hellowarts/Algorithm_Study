@@ -1,0 +1,35 @@
+from collections import deque
+import sys
+
+N, M = map(int, sys.stdin.readline().strip().split())
+Map = []
+Range = [ [-1 for _ in range(M)] for _ in range(N) ]
+visited = [[False for i in range(M)] for j in range(N)]
+direction = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+q = deque()
+for i in range(N):
+    spot = list(map(int, sys.stdin.readline().strip().split()))
+    Map.append(spot)
+    for j in range(M):
+        if Map[i][j] == 2:
+            q.append((i, j))
+            Range[i][j] = 0
+
+        if Map[i][j] == 0:
+            Range[i][j] = 0
+
+while q:
+    y, x = q.popleft()
+    visited[y][x] = True
+    for dx, dy in direction:
+        ny, nx = y + dy, x + dx
+        if 0 <= ny and ny < N and 0 <= nx and nx < M:
+            if not visited[ny][nx] and Map[ny][nx] == 1:
+                q.append((ny, nx))
+                visited[ny][nx] = True
+                Range[ny][nx] = Range[y][x] + 1
+
+for i in range(N):
+    for j in range(M):
+        print(Range[i][j], end=" ")
+    print()
