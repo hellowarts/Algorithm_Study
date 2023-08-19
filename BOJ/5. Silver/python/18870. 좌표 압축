@@ -1,0 +1,8 @@
+import sys
+import bisect
+
+N = int(sys.stdin.readline().strip())
+List = list(map(int, sys.stdin.readline().strip().split()))
+Sort = sorted(set(List))
+for i in List:
+    print(bisect.bisect_left(Sort, i), end=" ")
