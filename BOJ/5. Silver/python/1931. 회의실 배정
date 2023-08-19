@@ -1,0 +1,15 @@
+import sys
+
+time = []
+N = int(sys.stdin.readline().strip())
+for _ in range(N):
+    a, b = map(int, sys.stdin.readline().strip().split())
+    time.append((b, a))
+time.sort()
+end = 0
+count = 0
+for f, s in time:
+    if s >= end:
+        count += 1
+        end = f
+print(count)
