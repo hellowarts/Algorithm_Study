@@ -1,0 +1,32 @@
+import sys
+sys.setrecursionlimit(600*600+100)
+def BFS():
+    global count
+    while queue:
+        y, x = queue.pop(0)
+        for dx, dy in dic:
+            nx, ny = x+dx, y+dy
+            if nx<0 or ny <0 or nx >=M or ny >=N or visited[ny][nx] or Map[ny][nx] == 'X': continue
+            visited[ny][nx] = 1
+            queue.append((ny,nx))
+            if Map[ny][nx] == 'P':
+                count += 1
+    
+N, M = map(int, sys.stdin.readline().strip().split())
+Map = [list(sys.stdin.readline().strip()) for _ in range(N)]
+visited = [[0 for _ in range(M)] for _ in range(N)]
+dic = [(1,0), (0,1), (-1,0), (0,-1)]
+count = 0
+x, y = 0, 0
+queue = []
+for i in range(N):
+    for j in range(M):
+        if Map[i][j] == 'I':
+            queue.append((i, j))
+            visited[i][j] = 1
+            break
+BFS()
+if count==0:
+    print("TT")
+else:
+    print(count)
