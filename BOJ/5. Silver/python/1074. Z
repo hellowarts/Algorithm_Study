@@ -1,0 +1,21 @@
+import sys
+
+def ans(x, y, N):
+    global r, c, result
+    if x == c and y == r:
+        print(result)
+        return
+    if N == 1:
+        result += 1
+        return
+    if not(x<=c<x+N and y<=r<y+N):
+        result += N*N
+        return
+    ans(x, y, N//2)
+    ans(x+N//2, y, N//2)
+    ans(x, y+N//2, N//2)
+    ans(x+N//2, y+N//2, N//2)
+
+result = 0
+N, r, c = map(int, sys.stdin.readline().strip().split())
+ans(0, 0, 2**N)
