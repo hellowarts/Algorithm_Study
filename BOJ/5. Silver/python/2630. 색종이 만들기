@@ -1,0 +1,27 @@
+import sys
+
+def square(x, y, N):
+    count = 0
+    for i in range(y, y+N):
+        for j in range(x, x+N):
+            if Map[i][j]:
+                count += 1
+    if count == 0:
+        w_b[0] += 1
+    elif count == N*N:
+        w_b[1] += 1
+    else:
+        square(x, y, N//2)
+        square(x+N//2, y, N//2)
+        square(x, y+N//2, N//2)
+        square(x+N//2, y+N//2, N//2)
+
+Map = []
+w_b = [0 for _ in range(2)]
+N = int(sys.stdin.readline().strip())
+for _ in range(N):
+    m = list(map(int, sys.stdin.readline().strip().split()))
+    Map.append(m)
+square(0, 0, N)
+print(w_b[0])
+print(w_b[1])
