@@ -1,0 +1,32 @@
+import sys
+def BFS(L):
+    global N, M
+    visited = [ 0 for _ in range(N+1)]
+    visited[L] = 1
+    while queue:
+        x = queue.pop(0)
+        for i in Map[x]:
+            if visited[i]: continue
+            queue.append(i)
+            visited[i] = 1
+            length[L][i] = length[L][x] + 1
+
+N, M = map(int, sys.stdin.readline().strip().split())
+Map = [ [] for _ in range(N+1)]
+length = [ [0 for _ in range(N+1)] for _ in range(N+1)]
+queue = []
+
+for i in range(M):
+    a, b = map(int, sys.stdin.readline().strip().split())
+    Map[a].append(b)
+    Map[b].append(a)
+result = []
+for i in range(1, N+1):
+    queue.append(i)
+    BFS(i)
+    result.append(sum(length[i]))
+Min = min(result)
+for i in range(len(result)):
+    if result[i] == Min:
+        print(i+1)
+        break
