@@ -1,0 +1,20 @@
+import sys
+n, r = map(int, sys.stdin.readline().strip().split())
+nums = [i for i in range(1, n+1)]
+answer_list = []
+
+def nCr(n, ans, r):
+    if n == len(nums):
+        if r == len(ans):
+            temp = [i for i in ans]
+            answer_list.append(temp)
+        return
+    ans.append(nums[n])
+    nCr(n+1, ans, r)
+    ans.pop()
+    nCr(n+1, ans, r)
+nCr(0, [], r)
+for i in answer_list:
+    for j in i:
+        print(j, end=" ")
+    print()
