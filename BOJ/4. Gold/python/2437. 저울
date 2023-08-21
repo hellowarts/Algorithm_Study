@@ -1,0 +1,12 @@
+import sys
+N = int(sys.stdin.readline().strip())
+weight = list(map(int, sys.stdin.readline().strip().split()))
+weight.sort()
+
+result = 1
+for i in weight:
+    if result < i:
+        break
+    result += i
+    
+print(result)
