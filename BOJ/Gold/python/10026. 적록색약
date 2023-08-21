@@ -1,0 +1,44 @@
+import sys
+def BFS1():
+    global N
+    while queue1:
+        y, x = queue1.pop(0)
+        for dx, dy in dic:
+            nx, ny = x+dx, y+dy
+            if nx<0 or ny<0 or nx>=N or ny>=N or visited1[ny][nx]: continue
+            if Map[y][x] == 'B' and Map[y][x] != Map[ny][nx]: continue
+            if (Map[y][x] == 'R' or Map[y][x] == 'G') and Map[ny][nx] == 'B': continue
+            queue1.append((ny, nx))
+            visited1[ny][nx] = 1
+def BFS2():
+    global N
+    while queue2:
+        y, x = queue2.pop(0)
+        for dx, dy in dic:
+            nx, ny = x+dx, y+dy
+            if nx<0 or ny<0 or nx>=N or ny>=N: continue
+            if visited2[ny][nx] or Map[y][x] != Map[ny][nx]: continue
+            queue2.append((ny, nx))
+            visited2[ny][nx] = 1
+            
+N= int(sys.stdin.readline().strip())
+Map = [ list(sys.stdin.readline().strip()) for _ in range(N)]
+dic = [(1,0), (0,1), (-1,0), (0,-1)]
+queue1 = []
+queue2 = []
+visited1 = [ [0 for _ in range(N)] for _ in range(N)]
+visited2 = [ [0 for _ in range(N)] for _ in range(N)]
+count1 ,count2 = 0, 0
+for i in range(N):
+    for j in range(N):
+        if not visited1[i][j]:
+            visited1[i][j] = 1
+            queue1.append((i,j))
+            count1 += 1
+            BFS1()
+        if not visited2[i][j]: 
+            visited2[i][j] = 1
+            queue2.append((i,j))
+            count2 += 1
+            BFS2()
+print(count2, count1)
