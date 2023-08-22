@@ -1,0 +1,21 @@
+def BFS():
+    while queue:
+        y, x = queue.pop(0)
+        for dx, dy in dic:
+            nx, ny = x+dx, y+dy
+            if(nx<0 or ny<0 or nx>=M or ny>=N): continue
+            if(visited[ny][nx] or Map[ny][nx] == 0): continue
+            queue.append((ny, nx))
+            visited[ny][nx] = 1
+            length[ny][nx] = length[y][x] + 1
+
+N, M = map(int, input().split())
+Map = [list(map(int,input())) for _ in range(N)]
+visited = [ [0 for _ in range(M)] for _ in range(N)]
+length = [ [0 for _ in range(M)] for _ in range(N)]
+queue = []
+queue.append((0,0))
+visited[0][0] = 1 
+dic = [(1,0), (-1,0), (0,1), (0,-1)]
+BFS()
+print(length[N-1][M-1]+1)
