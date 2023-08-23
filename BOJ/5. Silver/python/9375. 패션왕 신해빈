@@ -1,0 +1,18 @@
+import sys
+T = int(sys.stdin.readline().strip())
+for i in range(T):
+    dic = {}
+    N = int(sys.stdin.readline().strip())
+    for j in range(N):
+        a, b = sys.stdin.readline().strip().split()
+        if b in dic:
+            dic[b].append(a)
+        else:
+            dic[b] = [a]
+    Sum = 1
+    for c in dic:
+        Sum *= len(dic[c]) + 1
+    if len(dic) <= 0:
+        print(0)
+    else:
+        print(Sum-1)
