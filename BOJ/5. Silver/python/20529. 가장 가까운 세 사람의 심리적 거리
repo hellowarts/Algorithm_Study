@@ -1,0 +1,24 @@
+import sys
+def solve(a,b,c):
+    count = 0
+    Seq = [(a,b), (b,c), (a,c)]
+    for x, y in Seq:
+        for i in range(4):
+            if x[i] != y[i]:
+                count += 1
+    return count
+
+T = int(sys.stdin.readline().strip())
+for _ in range(T):
+    N = int(sys.stdin.readline().strip())
+    List = list(sys.stdin.readline().strip().split())
+    if N > 32:
+        print(0)
+    else:
+        Min = 1e9
+        result = []
+        for i in range(N):
+            for j in range(i+1, N):
+                for k in range(j+1, N):
+                    Min = min(Min, solve(List[i],List[j],List[k]))
+        print(Min)
