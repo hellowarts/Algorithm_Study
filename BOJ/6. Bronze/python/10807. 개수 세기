@@ -1,0 +1,5 @@
+import sys
+N = int(sys.stdin.readline())
+List = list(map(int, sys.stdin.readline().strip().split()))
+v = int(sys.stdin.readline())
+print(List.count(v))
