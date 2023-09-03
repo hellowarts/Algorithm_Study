@@ -1,0 +1,6 @@
+import sys
+
+T = int(sys.stdin.readline().strip())
+for i in range(T):
+    S = sys.stdin.readline().strip()
+    print(S[0]+S[len(S)-1])           
