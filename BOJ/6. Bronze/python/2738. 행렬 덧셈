@@ -1,0 +1,13 @@
+import sys
+
+N, M = map(int, sys.stdin.readline().strip().split())
+matrix1 = []
+matrix2 = []
+for i in range(N):
+    matrix1.append(list(map(int, sys.stdin.readline().strip().split())))
+for i in range(N):
+    matrix2.append(list(map(int, sys.stdin.readline().strip().split())))
+for i in range(N):
+    for j in range(M):
+        print(matrix1[i][j]+matrix2[i][j], end=" ")
+    print()
