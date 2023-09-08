@@ -1,0 +1,34 @@
+import sys
+from collections import deque
+
+def BFS(target):
+    count = 0
+    while queue:
+        count += 1
+        y, x = queue.popleft()
+        for dx, dy in dic:
+            nx, ny = x+dx, y+dy
+            if nx<0 or ny<0 or nx>=M or ny>=N: continue
+            if visited[ny][nx] or Map[ny][nx] != target: continue
+            queue.append((ny, nx))
+            visited[ny][nx] = 1
+    return count ** 2
+        
+Map = []
+M, N = map(int, sys.stdin.readline().strip().split())
+visited = [[0 for _ in range(M)] for _ in range(N)]
+W, B = 0, 0
+queue = deque()
+dic = [(1,0), (-1,0), (0,1), (0,-1)]
+for _ in range(N):
+    Map.append(sys.stdin.readline().strip())
+for i in range(N):
+    for j in range(M):
+        if visited[i][j]: continue
+        queue.append((i, j))
+        visited[i][j] = 1
+        if Map[i][j] == 'W':
+            W += BFS('W')
+        else:
+            B += BFS('B')
+print(W, B)
