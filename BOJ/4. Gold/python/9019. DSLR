@@ -1,0 +1,47 @@
+import sys
+from collections import deque
+def com_D(n):
+    return n*2 % 10000
+def com_S(n):
+    if n == 0: return 9999
+    return n-1
+def com_L(n):
+    front = n % 1000
+    back = n // 1000
+    return front*10+back
+def com_R(n):
+    front = n % 10
+    back = n // 10
+    return front*1000+back
+def dfs(a, b):
+    queue = deque()
+    visited = set()
+    queue.append((a, ""))
+    visited.add(a)
+    while queue:
+        num, com = queue.popleft()
+        if num == b:
+            print(com)
+            return
+        n = com_D(num)
+        if n not in visited:
+            visited.add(n)
+            queue.append((n, com+"D"))
+        n = com_S(num)
+        if n not in visited:
+            visited.add(n)
+            queue.append((n, com+"S"))
+        n = com_L(num)
+        if n not in visited:
+            visited.add(n)
+            queue.append((n, com+"L"))
+        n = com_R(num)
+        if n not in visited:
+            visited.add(n)
+            queue.append((n, com+"R"))
+        
+input = sys.stdin.readline
+T = int(input())
+for _ in range(T):
+    A, B = map(int, input().strip().split())
+    dfs(A,B)
