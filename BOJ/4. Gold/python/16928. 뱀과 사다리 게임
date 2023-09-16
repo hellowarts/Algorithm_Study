@@ -1,0 +1,26 @@
+import sys
+from collections import deque
+def bfs():
+    queue = deque()
+    visited = set()
+    queue.append((1,0))
+    visited.add(1)
+    while queue:
+        pos, count = queue.popleft()
+        if pos == 100:
+            print(count)
+            return
+        for i in range(1, 7):
+            if pos+i > 100: continue
+            pos_i = Map[pos+i]
+            if pos_i not in visited:
+                visited.add(pos_i)
+                queue.append((pos_i, count+1))
+            
+input = sys.stdin.readline
+Map = [ i for i in range(101)]
+N, M = map(int, input().strip().split())
+for _ in range(N+M):
+    a, b = map(int, input().strip().split())
+    Map[a] = b
+bfs()
