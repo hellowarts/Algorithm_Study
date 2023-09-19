@@ -1,0 +1,33 @@
+import sys
+def DFS(y, x, count, total):
+    global ans
+    if ans >= total + MAX * (3 - count): return
+    if count == 3:
+        ans = max(ans, total)
+        return
+    else:
+        for dx, dy in dic:
+            nx, ny = x+dx, y+dy
+            if nx<0 or ny<0 or nx>=M or ny>=N or visited[ny][nx]: continue
+            if count == 1:
+                visited[ny][nx] = 1
+                DFS(y, x, count+1, total+Map[ny][nx])
+                visited[ny][nx] = 0
+            visited[ny][nx] = 1
+            DFS(ny, nx, count+1, total+Map[ny][nx])
+            visited[ny][nx] = 0
+            
+input = sys.stdin.readline
+N, M = map(int, input().strip().split())
+Map = [list(map(int, input().strip().split())) for _ in range(N)]
+visited = [ [0 for j in range(M)] for i in range(N)]
+dic = [(0,1), (0,-1), (1,0), (-1,0)]
+ans = 0
+MAX = max(map(max, Map))
+
+for i in range(N):
+    for j in range(M):
+         visited[i][j] = 1
+         DFS(i, j, 0, Map[i][j])
+         visited[i][j] = 0
+print(ans)
