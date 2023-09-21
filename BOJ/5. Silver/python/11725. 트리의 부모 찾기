@@ -1,0 +1,28 @@
+import sys
+from collections import deque
+def DFS():
+    queue = deque()
+    visited = set()
+    queue.append(1)
+    visited.add(1)
+    visited.add(0)
+    while queue:
+        x = queue.popleft()
+        for X in Map[x]:
+            if X not in visited:
+                visited.add(X)
+                queue.append(X)
+                answer[X] = x
+input = sys.stdin.readline
+N = int(input())
+Map = [ [0] for _ in range(N+1)]
+answer = [ 0 for _ in range(N+1)]
+for _ in range(N-1):
+    a, b = map(int, input().strip().split())
+    Map[a].append(b)
+    Map[b].append(a)
+DFS()
+for i in range(2,len(answer)):
+    print(answer[i])
+
+
