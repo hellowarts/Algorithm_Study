@@ -1,18 +1,14 @@
-weight = []
-height = []
-k = []
 N = int(input())
+people = [list(map(int, input().split())) for _ in range(N)]
+result = [0]*N
+
+# 모든 경우의 수에 대해서 비교
 for i in range(N):
-    a, b = map(int, input().split())
-    weight.append(a)
-    height.append(b)
-    k.append(0)
-for i in range(N):
-    for j in range(0+i, N):
-        if i != j:
-            if weight[i] > weight[j] and height[i] > height[j]:
-                k[j] += 1
-            elif weight[i] < weight[j] and height[i] < height[j]:
-                k[i] += 1
-for i in k:
+    for j in range(N):
+        # 자기 자신과의 비교는 무의미 하므로 취소
+        if i == j: continue
+        if people[i][0] < people[j][0] and people[i][1] < people[j][1]:
+            result[i] += 1
+
+for i in result:
     print(i+1, end=" ")
