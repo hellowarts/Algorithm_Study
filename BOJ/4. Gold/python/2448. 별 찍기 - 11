@@ -1,27 +1,25 @@
-graph = [['*', '*', '*', '*', '*'],
-         [' ', '*', '*', '*', ' '],
-         [' ', ' ', '*', ' ', ' ']]
+graph = [[' ', ' ', '*', ' ', ' '],
+         [' ', '*', ' ', '*', ' '],
+         ['*', '*', '*', '*', '*']]
 
 n = int(input())
 
 def star(N, before):
-    after = [[' ']*(2*(N+1)-1) for _ in range(2*(N+1)+1)]
-    for i in range(2*N+1):
+    after = [[' ']*(2*N*2) for _ in range(2*N)]
+    for i in range(N):
         after[i][N:N+N*2] = before[i]
     k=0
     for i in range(N,2*N):
         after[i][:N*2] = before[k]
         after[i][2*N:2*N+len(before[k])] = before[k]
         k+=1
-    if N+1 == n:
+    if 2*N == n:
         return after
-    return star(N+1, after)
-if n == 1:
-    result = ['*']
-elif n == 2:
+    return star(2*N, after)
+if n == 3:
     result = graph
 else:
-    result = star(2, graph)
+    result = star(3, graph)
 
 for i in result:
     print("".join(i))
