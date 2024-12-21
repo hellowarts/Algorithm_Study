@@ -1,7 +1,0 @@
-import sys
-List = [ i for i in range(1, 31)]
-for i in range(28):
-    n = int(sys.stdin.readline().strip())
-    List.remove(n)
-for i in List:
-    print(i)

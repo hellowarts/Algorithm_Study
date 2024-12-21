@@ -1,6 +1,0 @@
-T = int(input())
-for _ in range(T):
-    List = input().split()
-    for s in List:
-        print(s[::-1], end=" ")
-    print()

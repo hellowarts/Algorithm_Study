@@ -1,6 +1,0 @@
-import sys
-a, b = map(int, sys.stdin.readline().strip().split())
-result = a - b
-if result < 0:
-    result = -result
-print(result)

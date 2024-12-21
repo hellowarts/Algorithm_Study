@@ -1,8 +1,0 @@
-import sys
-result = -1
-P1, P2, P3, X1, X2, X3 = map(int, sys.stdin.readline().strip().split())
-for i in range(1, P1*P2*P3):
-    if i%P1 != X1 or i%P2 != X2 or i%P3 != X3: continue
-    result = i
-    break
-print(result)
