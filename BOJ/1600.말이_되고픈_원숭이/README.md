@@ -1,5 +1,5 @@
 # [Gold 3] 말이 되고픈 원숭이 - 1600
-[문제 링크] (https://www.acmicpc.net/problem/1600)
+[문제 링크](https://www.acmicpc.net/problem/1600)
 
 ### 분류
 BFS
