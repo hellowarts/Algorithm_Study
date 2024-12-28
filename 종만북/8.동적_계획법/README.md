@@ -15,6 +15,7 @@ int count() {
     return counter++;
 }
 ```
+
 </code>
 </pre>
 <p>위 함수는 입력을 받지 않아도 호출 될 때 마다 매번 다른 결과를 반환한다. 물론 bino(), bino2() 함수와 같이 입력이 같으면 출력도 항상 같은 함수도 작성할 수 있다.</p>
@@ -44,6 +45,7 @@ int someObscureFunction(int a, int b) {
     return ret;
 }
 ```
+
 </code>
 </pre>
 1. 함수의 반환 값이 항상 0 이상인 점을 이용하여 cache[][]를 -1로 초기화 하여 -1의 유무로 계산된 반환 값인 지를 구분한다.
