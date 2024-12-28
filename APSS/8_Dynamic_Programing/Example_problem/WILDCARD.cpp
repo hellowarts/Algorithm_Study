@@ -15,7 +15,7 @@
 //     while(pos < s.size() && pos < w.size() &&
 //             (w[pos] == '?' || w[pos] == s[pos]))
 //         ++pos; 
-//     // 2. 패턴 끝에 도달해서 끝난 경우 : 문자열도 같이 끝나야 대응응
+//     // 2. 패턴 끝에 도달해서 끝난 경우 : 문자열도 같이 끝나야 대응
 //     if(pos == w.size()) return pos == s.size();
 //     // 4. *를 만나서 끝난 경우 : 재귀 호출 시작
 //     if(w[pos] == '*') {
@@ -37,3 +37,59 @@
     이때 w의 pos + 1 이후를 패턴으로 하고 s의 pos + skip 이후를 문자열로 하여 재귀 중 단 하나라도 답이 있으면 참으로 한다.
 */
 
+/*
+중복되는 부분 문제 
+- 이 코드 또한 패턴: ******a, 원문: aaaaaaaaaaaab 같은 경우만 보아도 절대로 정답이 될 수 없는 경우를 위해 많은 경우의 수를 검사하게 된다.
+    고로 메모제이션을 이용하여 패턴의 위치까지와 원문의 위치까지의 가능 대응 여부를 담는 배열을 생성하여 계산된 값을 저장한다.
+*/
+
+int cache[101][101];
+std::string W, S;
+int matchMemoized(int w, int s) {
+    // 메모제이션
+    int& ret = cache[w][s];
+    if(ret != -1) return ret;
+    // while(s < S.size() && w < W.size() &&
+    //     (W[w] == '?' || W[w] == S[s])){
+    //     ++s;
+    //     ++w;
+    // }
+    if(w < W.size( ) && w < W.size() && 
+        (W[w] == '?' || W[w] == S[s])) 
+        return ret = matchMemoized(w+1, s+1);
+    //  2. 패턴 끝에 도달해서 끝난 경우 : 문자열도 같이 끝나야 대응
+    if(w == W.size()) return ret = (s == S.size());
+    // 4. *를 만나서 끝난 경우 : 재귀 호출 시작
+    // if(W[w] == '*') {
+    //     for(int skip = 0; s+skip <= S.size(); ++skip) {
+    //         if(matchMemoized(w+1, s+skip)) 
+    //             return ret = 1;
+    //     }
+    // }
+    if(W[w] == '*') {
+        return ret = matchMemoized(w+1, s) || 
+            (s < S.size() && matchMemoized(w, s+1));
+    }
+    return ret = 0;
+}
+
+int C, N;
+int main(void) {
+    std::cin >> C;
+    while(C--) {
+        std::vector<std::string> answer;
+        W = "";
+        S = "";
+        std::cin >> W;
+        std::cin >> N;
+
+        while(N--) {
+            memset(cache, -1, sizeof(cache));
+            std::cin >> S;
+            if(matchMemoized(0, 0)) answer.push_back(S);
+        }
+        
+        std::sort(answer.begin(), answer.end());
+        for(std::string s : answer) std::cout << s << "\n";
+    }
+}
