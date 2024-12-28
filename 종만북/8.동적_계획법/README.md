@@ -6,6 +6,16 @@
 ### 8.1.1 메모제이션을 적용할 수 있는 경우
 <p>프로그래밍에서의 함수는 수학에서
 의 함수와 달리 입력 값에 따라 나오는 출력 값이 달라질 수 있다.</p>
+```
+<pre>
+<code>
+int counter = 0;
+int count() {
+    return counter++;
+}
+</code>
+</pre>
+```
 <pre>
 <code>
 ```cpp
@@ -16,10 +26,11 @@ int count() {
 ```
 </code>
 </pre>
-```
-int counter = 0;
-int count() {
-    return counter++;
+```java
+public class BootSpringBootApplication {
+  public static void main(String[] args) {
+    System.out.println("Hello, Honeymon");
+  }
 }
 ```
 <p>위 함수는 입력을 받지 않아도 호출 될 때 마다 매번 다른 결과를 반환한다. 물론 bino(), bino2() 함수와 같이 입력이 같으면 출력도 항상 같은 함수도 작성할 수 있다.</p>
