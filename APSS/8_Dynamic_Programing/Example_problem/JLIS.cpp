@@ -47,7 +47,7 @@ int main() {
         std::cin >> n >> m;
         for(int i=0; i<n; i++) std::cin >> A[i];
         for(int i=0; i<m; i++) std::cin >> B[i];
-        std::cout << jlis(-1, -1) - 2<< "\n";
+        std::cout << jlis(-1, -1) - 2 << "\n";
     }
     return 0;
 }
