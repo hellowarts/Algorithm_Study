@@ -1,5 +1,5 @@
-# [Silver 1] 점프 - 1890
-[문제 링크](https://www.acmicpc.net/problem/1890)
+# [Goald 3] 내리막 길 - 1520
+[문제 링크](https://www.acmicpc.net/problem/1520)
 
 ### 분류
 DP, DFS
