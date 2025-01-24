@@ -1,4 +1,4 @@
-# [Bronze 2] 회문 - 17609
+# [Gold 5] 회문 - 17609
 [문제 링크](https://www.acmicpc.net/problem/17609)
 
 ### 분류
