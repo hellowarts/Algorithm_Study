@@ -87,3 +87,4 @@ double ccw(vector2 p, vector2 a, vector2 b) {
 }
 ```
 
+## 15.3 교차와 거리 면적
