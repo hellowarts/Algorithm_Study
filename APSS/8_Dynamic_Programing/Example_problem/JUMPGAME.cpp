@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 /*
 재귀 호출에서 시작
-- 우선 문제를 재귀적으로 핵셜하는 완전 탐색 알고리즘을 만들어 본다.
+- 우선 문제를 재귀적으로 해결하는 완전 탐색 알고리즘을 만들어 본다.
     jump(y, x) : (y, x) 에서 부터 맨 마지막 칸까지 도달할 수 있는지 여부 반환
 - 이후 jump() 함수를 호출할 때 마다 아래쪽으로 갈지 오른쪽으로 갈지를 선택한다.
     jump(y, x) : jump(y+jumpSize, x) || jump(y, x+jumpSize)
@@ -11,9 +11,9 @@
 // 재귀 호출 알고리즘
 // int n, board[100][100];
 // bool jump(int y, int x) {
-//     // 기저 사례: 게임 판 밖을 벗어난 경우
+//     // 기저 사례 1: 게임 판 밖을 벗어난 경우
 //     if(y >= n || x >= n) return false;
-//     // 기저 사례: 마지막 칸에 도착한 경우
+//     // 기저 사례 2: 마지막 칸에 도착한 경우
 //     if(y == n-1 && x == n-1) return true;
 //     int jumpSize = board[y][x];
 //     return jump(y+jumpSize, x) || jump(y, x+jumpSize);
