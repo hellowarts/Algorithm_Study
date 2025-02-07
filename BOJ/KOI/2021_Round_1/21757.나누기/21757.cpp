@@ -3,7 +3,7 @@
 static int N;
 static int array[100001];
 static int sum[100001];
-long long int dp[5];
+static long long int dp[4];
 
 int main(void) {
 
@@ -18,23 +18,16 @@ int main(void) {
 
     long long int answer = 0;
     if(sum[N-1] % 4 == 0) {
-        // 전체 합이 0인 경우
-        if(!sum[N-1]) {
-            answer = (long long int)(((N-3) * (N-2) * (N-1)) / 6);
-        }
-        // 전체 합이 4의 배수인 경우
-        else {
-            dp[0] = 1;
-            int val = sum[N-1] / 4; // 4등분한 값
-            
-            for(int i=0; i<N; i++) {
-                int pos = sum[i] / val;
-                if(sum[i] % val !=0) continue;
-                if(pos < 1 || pos > 4) continue;
-                dp[pos] += dp[pos-1];
+        dp[0] = 1;
+        int val = sum[N-1] / 4; // 4등분한 값
+
+        for (int i=0; i<N-1; i++) {
+            for (int j=3; j>0; j--) {
+                if (sum[i] == val*j) 
+                    dp[j] += dp[j-1];
             }
-            answer = dp[4];
         }
+        answer = dp[3];
     }  
     std::cout << answer;
 
