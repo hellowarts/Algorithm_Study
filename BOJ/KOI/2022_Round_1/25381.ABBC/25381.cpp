@@ -1,31 +1,28 @@
 #include<bits/stdc++.h>
 
-static int N;
-static int array[1000001];
-
 int main(void) {
 
-    std::cin >> N;
-    for(int i = 0; i < N; i++) 
-        std::cin >> array[i];
+    std::string S;
+    std::queue<int> q1, q2;
+    std::cin >> S;
     
-    int even_result = 0;
-    int odd_result = 0;
-
-    int even_count = 0;
-    int odd_count = 0;
-    
-    for(int i = 0; i < N; i++) {
-        if(array[i] % 2 == 0) {
-            even_count++;
-            even_result += odd_count;
-        }
-        else {
-            odd_count++;
-            odd_result += even_count;
+    int result = 0;
+    for(int i=0; i<S.size(); i++) {
+        if(S[i] == 'B') q1.push(i);
+        else if(!q1.empty() && S[i] == 'C') {
+            result++;
+            S[q1.front()] = 'X';
+            q1.pop();
         }
     }
-    std::cout << std::min(even_result, odd_result);
+    for(int i=0; i<S.size(); i++) {
+        if(S[i] == 'A') q2.push(i);
+        else if(!q2.empty() && S[i] == 'B') {
+            result++;
+            q2.pop();
+        }
+    }
+    std::cout << result;
 
     return 0;
 }
