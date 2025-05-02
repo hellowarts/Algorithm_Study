@@ -16,20 +16,10 @@ n×n 격자판의 각 칸에 다음 문자들로 구성된 문자 하나가 적�
 
 예를 들어, 위 격자판에는 아래와 같이 총 3개의 `"SJOI"`가 존재한다.
 
-<p>X J O I</p>
-<p>S X X X</p>
-<p>X X X X</p>
-<p>X X X X</p>
-
-<p>X X X X</p>
-<p>S X X X</p>
-<p>J O X X </p>
-<p>X I X X </p>
-
-<p>X X X X</p>
-<p>S X X X</p>
-<p>J X X X </p>
-<p>O I X X </p>
+<p>X J O I   X X X X   X X X X</p>
+<p>S X X X   S X X X   S X X X</p>
+<p>X X X X   J O X X   J X X X</p>
+<p>X X X X   X I X X   O I X X</p>
 
 이러한 `"SJOI"` 경로의 수를 구하는 프로그램을 작성하시오.
 
