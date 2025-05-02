@@ -6,24 +6,28 @@ n×n 격자판의 각 칸에 다음 문자들로 구성된 문자 하나가 적�
 
 다음은 4×4 격자판의 예시이다:
 
-O J O I
-S O J O
-J O O J
-O I J O
+<p>O J O I</p>
+<p>S O J O</p>
+<p>J O O J</p>
+<p>O I J O</p>
 
 
 입력의 위치에서 출발하여 인접한 상, 하, 좌, 우, 대각선 방향으로 이동하며, 경로 상에 있는 알파벳을 순서대로 추가하여 `"SJOI"`가 되는 경우의 수를 구하고자 한다.
 
 예를 들어, 위 격자판에는 아래와 같이 총 3개의 `"SJOI"`가 존재한다.
 
-X J O I
-S X X X
-X X X X
+<p>
+    X J O I
+    S X X X
+    X X X X
+</p>
 
-X X X X
-S X X X
-J O X X 
-X I X X 
+<p>
+    X X X X
+    S X X X
+    J O X X
+    X I X X
+</p>
 
 X X X X 
 S X X X
