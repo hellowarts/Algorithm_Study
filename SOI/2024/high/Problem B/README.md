@@ -58,11 +58,11 @@ O I X X
 ---
 
 ## 입력 예시 1
-4
-OJOI
-SOJO
-JOOJ
-OIJO
+<p>4</p>
+<p>OJOI</p>
+<p>SOJO</p>
+<p>JOOJ</p>
+<p>OIJO</p>
 
 
 ## 출력 예시 1
