@@ -10,8 +10,6 @@ int x = 0, y = 0;
 int dir = 0; // 0: 위, 1: 오른쪽, 2: 아래, 3: 왼쪽
 
 vector<int> solution(string command) {
-    vector<int> answer;
-
     for(char c : command) {
         if(c == 'R') dir = (dir + 1) % 4; // 오른쪽으로 회전
         if(c == 'L') dir = (dir + 3) % 4; // 왼쪽으로 회전
@@ -26,5 +24,5 @@ vector<int> solution(string command) {
         }
     }
 
-    return answer;
+    return {x, y};
 }
